@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.commands.TeleopIndexerCommand;
 
 public class IndexerSubsystem extends SubsystemBase {
 
@@ -23,6 +24,8 @@ private TalonSRX indexer, feeder;
   public IndexerSubsystem() {
     indexer = new TalonSRX(Constants.Indexer.INDEXER_ID);
     feeder = new TalonSRX(Constants.Indexer.FEEDER_ID);
+
+    this.setDefaultCommand(new TeleopIndexerCommand(this));
 
   }
 

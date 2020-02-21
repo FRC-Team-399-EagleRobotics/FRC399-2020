@@ -36,4 +36,9 @@ public final class Constants {
         public static final int INDEXER_ID = 20;
         public static final int FEEDER_ID = 21;
     }
+
+    public static class Shooter {
+        public static final int TOP_ID = 30;
+        public static final int BOT_ID = 31;
+    }
 }

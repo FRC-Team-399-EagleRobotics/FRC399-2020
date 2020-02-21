@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.commands.TeleopIntakeCommand;
 
 public class IntakeSubsystem extends SubsystemBase {
 
@@ -23,6 +24,8 @@ public class IntakeSubsystem extends SubsystemBase {
   public IntakeSubsystem() {
     intake = new TalonSRX(Constants.Intake.INTAKE_ID);
     pivot = new TalonSRX(Constants.Intake.PIVOT_ID);
+
+    this.setDefaultCommand(new TeleopIntakeCommand(this));
 
   }
 

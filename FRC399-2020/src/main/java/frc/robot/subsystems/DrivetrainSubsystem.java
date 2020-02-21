@@ -9,17 +9,18 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import com.kauailabs.navx.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.commands.TeleopDriveCommand;
 
 public class DrivetrainSubsystem extends SubsystemBase {
 
   private TalonFX leftA, leftB, rightA, rightB;  
   
-  private AHRS navx;
+  //private AHRS navx;
   /**
    * Creates a new DrivetrainSubsystem.
    */
@@ -44,11 +45,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
     // END TALON INITIALIZATION
 
     // BEGIN NAVX INIT AND CALIBRATION
-    navx = new AHRS(SPI.Port.kMXP);
-    navx.reset();
+    // navx = new AHRS(SPI.Port.kMXP);
+    // navx.reset();
 
 
-    //this.setDefaultCommand(defaultCommand);
+    this.setDefaultCommand(new TeleopDriveCommand(this));
   }
 
   /**
@@ -73,9 +74,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   /**
    * Resets the navx yaw angle reading to zero
-   */
+   */ 
   public void resetNavx() {
-    navx.reset();
+    //navx.reset();
   }
 
   /**
@@ -83,7 +84,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
    * @return
    */
   public double getYaw() {
-    return navx.getAngle();
+    return 0;//navx.getAngle();
   }
 
   /**
@@ -91,7 +92,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
    * @return
    */
   public double getYawRate() {
-    return navx.getRate();
+    return 0;//navx.getRate();
   }
 
   @Override
