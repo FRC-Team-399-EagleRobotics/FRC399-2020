@@ -58,10 +58,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
    * @param r
    */
   public void setTank(double l, double r) {
-    leftA.set(ControlMode.PercentOutput, l);
+    leftA.set(ControlMode.PercentOutput, r);
     leftB.set(ControlMode.Follower, Constants.Drivetrain.LEFT_A_ID);
 
-    rightA.set(ControlMode.PercentOutput, r);
+    rightA.set(ControlMode.PercentOutput, -l);
     rightB.set(ControlMode.Follower, Constants.Drivetrain.RIGHT_A_ID);
   }
 
@@ -69,6 +69,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
    * Sets the output of the drivetrain with arcade drive inputs - throttle and steering
    */
   public void setArcade(double throttle, double steering) {
+    steering *= -1;
     setTank(throttle + steering, throttle - steering);
   }
 

@@ -41,13 +41,13 @@ public class TeleopShooterCommand extends CommandBase {
     double speed = 0.0;
 
     if(RobotContainer.operator.getRawButton(1)) {
-      speed = 0.15;
-    } else if(RobotContainer.operator.getRawButton(2)) {
       speed = 0.25;
-    } else if(RobotContainer.operator.getRawButton(3)) {
+    } else if(RobotContainer.operator.getRawButton(2)) {
       speed = 0.5;
-    } else if(RobotContainer.operator.getRawButton(1)) {
+    } else if(RobotContainer.operator.getRawButton(3)) {
       speed = 0.8;
+    } else if(RobotContainer.operator.getRawButton(4)) {
+      speed = 1;
     }
 
     shooter.set(speed, speed * 0.8);

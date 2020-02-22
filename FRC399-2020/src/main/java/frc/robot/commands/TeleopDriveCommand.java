@@ -38,10 +38,17 @@ public class TeleopDriveCommand extends CommandBase {
   @Override
   public void execute() {
 
-    double l = RobotContainer.leftJoy.getRawAxis(1);
+    // double l = RobotContainer.leftJoy.getRawAxis(1);
     
-    double r = RobotContainer.rightJoy.getRawAxis(1);
-    dt.setTank(l, r);
+    // double r = RobotContainer.rightJoy.getRawAxis(1);
+    // dt.setTank(l, r);
+
+    double throttle = RobotContainer.leftJoy.getRawAxis(1);
+    double steering = RobotContainer.rightJoy.getRawAxis(0);
+
+    steering = steering * Math.abs(steering);
+
+    dt.setArcade(throttle, steering);
   }
 
   // Called once the command ends or is interrupted.

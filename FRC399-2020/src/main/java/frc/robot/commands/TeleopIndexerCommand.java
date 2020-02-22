@@ -39,19 +39,19 @@ public class TeleopIndexerCommand extends CommandBase {
   public void execute() {
 
    boolean shoot = RobotContainer.operator.getRawButton(8);
-   boolean slow = RobotContainer.operator.getRawButton(7);
+   boolean slow = RobotContainer.operator.getRawButton(6);
 
    double spin = 0.0;
    double feed = 0.0;
 
    if(shoot) {
-     spin = 1.0;
+     spin = .3750;
      feed = 1.0;
    }
 
    if(slow) {
-     spin = 0.5;
-     feed = 0.0;
+     spin = -0.375;
+     feed = -0.50;
    }
 
    indexer.setSpin(spin);

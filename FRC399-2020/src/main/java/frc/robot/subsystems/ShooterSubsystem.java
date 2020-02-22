@@ -53,8 +53,8 @@ public class ShooterSubsystem extends SubsystemBase {
    * @param r
    */
   public void set(double l, double r) {
-    top.set(ControlMode.PercentOutput, r);
-    bottom.set(ControlMode.PercentOutput, l);
+    top.set(ControlMode.PercentOutput, -r);
+    bottom.set(ControlMode.PercentOutput, -l);
   }
 
 

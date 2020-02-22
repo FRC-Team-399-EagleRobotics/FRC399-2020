@@ -18,23 +18,23 @@ package frc.robot;
 public final class Constants {
 
     public static class Drivetrain {
-        public static final int LEFT_A_ID = 0;
-        public static final int LEFT_B_ID = 1;
-        public static final int RIGHT_A_ID = 2;
-        public static final int RIGHT_B_ID = 3;
+        public static final int LEFT_A_ID = 6;
+        public static final int LEFT_B_ID = 4;
+        public static final int RIGHT_A_ID = 8;
+        public static final int RIGHT_B_ID = 7;
 
         
 
     }
 
     public static class Intake {
-        public static final int INTAKE_ID = 10;
+        public static final int INTAKE_ID = 3;
         public static final int PIVOT_ID = 11;
     }
 
     public static class Indexer {
-        public static final int INDEXER_ID = 20;
-        public static final int FEEDER_ID = 21;
+        public static final int INDEXER_ID = 2;
+        public static final int FEEDER_ID = 1;
     }
 
     public static class Shooter {
