@@ -31,9 +31,8 @@ public class ShooterTiltSubsystem extends SubsystemBase {
     // BEGIN TALON INITIALIZATION 
     
     //Initialize talons with common DT configuration:
-    tilt = init(Constants.Shooter.TOP_ID);
+    tilt = init(Constants.Shooter.TILT_ID);
 
-    // Do talon specific setups here...
 
     tilt.set(ControlMode.PercentOutput, 0.0);
 
@@ -57,10 +56,12 @@ public class ShooterTiltSubsystem extends SubsystemBase {
   }
 
   public void setPosition(double pos) {
-
+    tilt.set(ControlMode.Position, pos);
   }
 
-
+  public double getPosition() {
+    return tilt.getSelectedSensorPosition();
+  }
 
 
   public TalonSRX init(int id) {
@@ -70,9 +71,11 @@ public class ShooterTiltSubsystem extends SubsystemBase {
 
     talon.configFactoryDefault();
 
-    SupplyCurrentLimitConfiguration supplyCurrentLimit = new SupplyCurrentLimitConfiguration(true, 40, 45, 0.5);    talon.configSupplyCurrentLimit(supplyCurrentLimit);
+    SupplyCurrentLimitConfiguration supplyCurrentLimit = new SupplyCurrentLimitConfiguration(true, 40, 45, 0.5);    
+    talon.configSupplyCurrentLimit(supplyCurrentLimit);
 
-    talon.setNeutralMode(NeutralMode.Coast);
+
+    talon.setNeutralMode(NeutralMode.Brake);
     // Do common talon initialization stuff here.
     talon.configClosedloopRamp(0.2);
     talon.configOpenloopRamp(.2);
@@ -81,7 +84,7 @@ public class ShooterTiltSubsystem extends SubsystemBase {
     double kP = 0.0465;
     double kI = 0.0005;
     double kD = 0.0;
-    double kF = 0.0478;
+    double kF = 0.0;
     int iZone = 150;
 
     talon.config_kP(0, kP);

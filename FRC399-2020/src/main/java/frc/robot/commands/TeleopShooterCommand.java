@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.DriverInterface;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.ShooterSubsystem;
 
@@ -55,13 +56,11 @@ public class TeleopShooterCommand extends CommandBase {
 
     double speed = 0.0;
 
-    if(RobotContainer.operator.getRawButton(1)) {
+    if(DriverInterface.getInstance().getShortShot()) {
       speed = 1000;
-    } else if(RobotContainer.operator.getRawButton(2)) {
+    } else if(DriverInterface.getInstance().getMedShot()) {
       speed = 2000;
-    } else if(RobotContainer.operator.getRawButton(3)) {
-      speed = 4000;
-    } else if(RobotContainer.operator.getRawButton(4)) {
+    } else if(DriverInterface.getInstance().getLongShot()) {
       speed = 6000;
     }
 

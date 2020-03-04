@@ -40,5 +40,7 @@ public final class Constants {
     public static class Shooter {
         public static final int TOP_ID = 30;
         public static final int BOT_ID = 31;
+        public static final int TILT_ID = 32;
+
     }
 }
