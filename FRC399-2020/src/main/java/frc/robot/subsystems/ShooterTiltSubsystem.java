@@ -12,33 +12,30 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.commands.TeleopShooterCommand;
 
-public class ShooterSubsystem extends SubsystemBase {
+public class ShooterTiltSubsystem extends SubsystemBase {
   
-  private TalonFX top, bottom;  
+  private TalonSRX tilt;  
   
   //private AHRS navx;
   /**
    * Creates a new DrivetrainSubsystem.
    */
-  public ShooterSubsystem() {
+  public ShooterTiltSubsystem() {
 
     // BEGIN TALON INITIALIZATION 
     
     //Initialize talons with common DT configuration:
-    top = init(Constants.Shooter.TOP_ID);
-    
-    bottom = init(Constants.Shooter.BOT_ID);
+    tilt = init(Constants.Shooter.TOP_ID);
 
     // Do talon specific setups here...
 
-    top.set(ControlMode.PercentOutput, 0.0);
-
-    bottom.set(ControlMode.PercentOutput, 0.0);
+    tilt.set(ControlMode.PercentOutput, 0.0);
 
     // END TALON INITIALIZATION
 
@@ -47,7 +44,7 @@ public class ShooterSubsystem extends SubsystemBase {
     // navx.reset();
 
 
-    this.setDefaultCommand(new TeleopShooterCommand(this));
+    //this.setDefaultCommand(new TeleopShooterCommand(this));
   }
 
   /**
@@ -55,23 +52,19 @@ public class ShooterSubsystem extends SubsystemBase {
    * @param l
    * @param r
    */
-  public void set(double l, double r) {
-    top.set(ControlMode.PercentOutput, -r);
-    bottom.set(ControlMode.PercentOutput, -l);
+  public void set(double v) {
+    tilt.set(ControlMode.PercentOutput, v);
   }
 
-
-  public void setVelocity(double vel) {
-    double setpoint = (vel / 600 * 2048) / (22/16);
-    
-    bottom.set(ControlMode.Velocity, setpoint);
-    top.set(ControlMode.Velocity, setpoint * 0.8);
+  public void setPosition(double pos) {
 
   }
 
 
-  public TalonFX init(int id) {
-    TalonFX talon = new TalonFX(id);
+
+
+  public TalonSRX init(int id) {
+    TalonSRX talon = new TalonSRX(id);
 
     // Do common talon initialization stuff here.
 

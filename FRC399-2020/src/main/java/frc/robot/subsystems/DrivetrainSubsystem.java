@@ -8,10 +8,11 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 //import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.commands.TeleopDriveCommand;
@@ -104,6 +105,12 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public TalonFX init(int id) {
     TalonFX talon = new TalonFX(id);
 
+    talon.configFactoryDefault();
+
+    SupplyCurrentLimitConfiguration supplyCurrentLimit = new SupplyCurrentLimitConfiguration(true, 60, 65, 3);
+    talon.configSupplyCurrentLimit(supplyCurrentLimit);
+
+    talon.setNeutralMode(NeutralMode.Coast);
     // Do common talon initialization stuff here.
 
 
