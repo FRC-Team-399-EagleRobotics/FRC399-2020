@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.ColorWheelSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -29,9 +30,10 @@ public class RobotContainer {
   public static Joystick operator = new Joystick(2);
 
   public DrivetrainSubsystem dt = new DrivetrainSubsystem();
-  public IntakeSubsystem intake = new IntakeSubsystem();
-  public IndexerSubsystem indexer = new IndexerSubsystem();
-  public ShooterSubsystem shooter = new ShooterSubsystem();
+   public IntakeSubsystem intake = new IntakeSubsystem();
+   public IndexerSubsystem indexer = new IndexerSubsystem();
+   public ShooterSubsystem shooter = new ShooterSubsystem();
+   public ColorWheelSubsystem colorWheel = new ColorWheelSubsystem();
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.

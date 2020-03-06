@@ -39,33 +39,33 @@ public class TeleopShooterCommand extends CommandBase {
   public void execute() {
 
     // open loop
-    // double speed = 0.0;
-
-    // if(RobotContainer.operator.getRawButton(1)) {
-    //   speed = 0.25;
-    // } else if(RobotContainer.operator.getRawButton(2)) {
-    //   speed = 0.5;
-    // } else if(RobotContainer.operator.getRawButton(3)) {
-    //   speed = 0.8;
-    // } else if(RobotContainer.operator.getRawButton(4)) {
-    //   speed = 1;
-    // }
-
-    // shooter.set(speed, speed * 0.8);
-
     double speed = 0.0;
 
     if(RobotContainer.operator.getRawButton(1)) {
-      speed = 1000;
+      speed = 0.25;
     } else if(RobotContainer.operator.getRawButton(2)) {
-      speed = 2000;
+      speed = 0.5;
     } else if(RobotContainer.operator.getRawButton(3)) {
-      speed = 4000;
+      speed = 0.8;
     } else if(RobotContainer.operator.getRawButton(4)) {
-      speed = 6000;
+      speed = 1;
     }
 
-    shooter.setVelocity(speed);
+     shooter.set(speed, speed * 0.8);
+
+    // double speed = 0.0;
+
+    // if(RobotContainer.operator.getRawButton(1)) {
+    //   speed = 1000;
+    // } else if(RobotContainer.operator.getRawButton(2)) {
+    //   speed = 2000;
+    // } else if(RobotContainer.operator.getRawButton(3)) {
+    //   speed = 4000;
+    // } else if(RobotContainer.operator.getRawButton(4)) {
+    //   speed = 6000;
+    // }
+
+    // shooter.setVelocity(speed);
   }
 
   // Called once the command ends or is interrupted.

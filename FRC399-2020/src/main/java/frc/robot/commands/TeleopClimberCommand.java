@@ -9,24 +9,22 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.util.*;
+import frc.robot.subsystems.ClimberSubsystem;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class TeleopIntakeCommand extends CommandBase {
+public class TeleopClimberCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final IntakeSubsystem intake;
-  GamepadUtility Controls = GamepadUtility.getInstance();
+  private final ClimberSubsystem climber;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public TeleopIntakeCommand(IntakeSubsystem subsystem) {
-    intake = subsystem;
+  public TeleopClimberCommand(ClimberSubsystem subsystem) {
+    climber = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -40,8 +38,7 @@ public class TeleopIntakeCommand extends CommandBase {
   @Override
   public void execute() {
 
-    double speed = (Controls.DPad() == 180 ? -.75 : Controls.DPad() == 0 ? .75 : 0.0);
-    intake.setRollers(speed);
+   
   }
 
   // Called once the command ends or is interrupted.

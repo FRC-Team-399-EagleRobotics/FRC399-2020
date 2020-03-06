@@ -9,15 +9,15 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.util.*;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class TeleopIntakeCommand extends CommandBase {
+public class TeleopIndexPassiveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final IntakeSubsystem intake;
+  private final IndexerSubsystem indexer;
   GamepadUtility Controls = GamepadUtility.getInstance();
 
   /**
@@ -25,8 +25,8 @@ public class TeleopIntakeCommand extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public TeleopIntakeCommand(IntakeSubsystem subsystem) {
-    intake = subsystem;
+  public TeleopIndexPassiveCommand(IndexerSubsystem subsystem) {
+    indexer = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -40,8 +40,14 @@ public class TeleopIntakeCommand extends CommandBase {
   @Override
   public void execute() {
 
-    double speed = (Controls.DPad() == 180 ? -.75 : Controls.DPad() == 0 ? .75 : 0.0);
-    intake.setRollers(speed);
+   
+   double indexerOutput = (Controls.DPad() == 180 ? -.375 : RobotContainer.operator.getRawButton(8) ? .3750 :
+   RobotContainer.operator.getRawButton(6) ? -0.375 : 0.0);
+   double feederOutput = (RobotContainer.operator.getRawButton(8) ? 1.0 : RobotContainer.operator.getRawButton(6) ? -0.75 : 0.0);
+
+   indexer.setSpin(indexerOutput);
+   indexer.setFeed(feederOutput);
+   
   }
 
   // Called once the command ends or is interrupted.

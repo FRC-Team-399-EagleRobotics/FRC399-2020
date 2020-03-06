@@ -22,23 +22,28 @@ public final class Constants {
         public static final int LEFT_B_ID = 4;
         public static final int RIGHT_A_ID = 8;
         public static final int RIGHT_B_ID = 7;
-
-        
-
     }
 
     public static class Intake {
-        public static final int INTAKE_ID = 3;
-        public static final int PIVOT_ID = 11;
+        public static final int INTAKE_ID = 24;
+        public static final int PIVOT_ID = 5;
     }
 
     public static class Indexer {
-        public static final int INDEXER_ID = 2;
-        public static final int FEEDER_ID = 1;
+        public static final int INDEXER_ID = 10;
+        public static final int FEEDER_ID = 12;
     }
 
     public static class Shooter {
         public static final int TOP_ID = 30;
         public static final int BOT_ID = 31;
+        public static final int SHOOTER_PIVOT_ID = 32;
+    }
+    public static class Climber {
+        public static final int WINCH_A_ID = 1;
+        public static final int WINCH_B_ID = 3;
+    }
+    public static class ColorWheel {
+        public static final int WHEEL_ID = 2;
     }
 }

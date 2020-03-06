@@ -9,24 +9,23 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.util.*;
+import frc.robot.subsystems.ClimberSubsystem;
+import frc.robot.subsystems.ColorWheelSubsystem;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class TeleopIntakeCommand extends CommandBase {
+public class TeleopColorWheelCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final IntakeSubsystem intake;
-  GamepadUtility Controls = GamepadUtility.getInstance();
+  private final ColorWheelSubsystem color;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public TeleopIntakeCommand(IntakeSubsystem subsystem) {
-    intake = subsystem;
+  public TeleopColorWheelCommand(ColorWheelSubsystem subsystem) {
+    color = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -39,9 +38,9 @@ public class TeleopIntakeCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    double speed = (Controls.DPad() == 180 ? -.75 : Controls.DPad() == 0 ? .75 : 0.0);
-    intake.setRollers(speed);
+    double output = (RobotContainer.rightJoy.getRawButton(3) ? 1.0 : 0.0);
+    color.setWheel(output);
+   
   }
 
   // Called once the command ends or is interrupted.
