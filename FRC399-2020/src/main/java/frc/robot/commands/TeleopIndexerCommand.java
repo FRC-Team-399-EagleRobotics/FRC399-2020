@@ -46,7 +46,7 @@ public class TeleopIndexerCommand extends CommandBase {
 
    if(shoot) {
      spin = .3750;
-     feed = 1.0;
+     feed = 1.0;  
    }
 
    if(slow) {

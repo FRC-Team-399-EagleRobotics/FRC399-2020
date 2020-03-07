@@ -73,6 +73,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
     steering *= -1;
     setTank(throttle + steering, throttle - steering);
   }
+  public void setAutoAim(boolean enable){
+    
+  }
 
   /**
    * Resets the navx yaw angle reading to zero

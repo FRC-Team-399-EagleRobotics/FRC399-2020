@@ -27,7 +27,7 @@ import frc.robot.subsystems.ClimberSubsystem;
 public class RobotContainer {
 
   public static Joystick leftJoy = new Joystick(0);
-  public static Joystick rightjoy = new Joystick(1);
+  public static Joystick rightJoy = new Joystick(1);
   public static Joystick operator = new Joystick(2);
 
    public DrivetrainSubsystem dt = new DrivetrainSubsystem();

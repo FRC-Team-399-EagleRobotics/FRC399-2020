@@ -8,8 +8,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.DrivetrainSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -19,7 +21,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-
+  Timer timer = new Timer();
+  DrivetrainSubsystem driveTrain = new DrivetrainSubsystem();
   private RobotContainer m_robotContainer;
 
   /**
@@ -70,6 +73,12 @@ public class Robot extends TimedRobot {
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
+
+      // if(timer.get() < 0.5){
+      //   driveTrain.setArcade(1, 0);
+      // }else{
+      //   driveTrain.setArcade(0, 0);
+      // }
     }
   }
 
