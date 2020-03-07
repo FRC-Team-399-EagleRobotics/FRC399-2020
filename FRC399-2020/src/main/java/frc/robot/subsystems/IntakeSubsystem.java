@@ -42,7 +42,7 @@ public class IntakeSubsystem extends SubsystemBase {
    * @param angle
    */
   public void setPivot(double angle) {
-    pivot.set(ControlMode.Position, angle);
+    pivot.set(ControlMode.PercentOutput, angle);
   }
 
   @Override

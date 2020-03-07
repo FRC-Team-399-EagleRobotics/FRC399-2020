@@ -38,6 +38,7 @@ public class TeleopClimberCommand extends CommandBase {
   @Override
   public void execute() {
 
+    climber.setWinch(RobotContainer.operator.getRawAxis(3));
    
   }
 

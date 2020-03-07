@@ -39,9 +39,12 @@ public class TeleopIntakeCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    
     double speed = (Controls.DPad() == 180 ? -.75 : Controls.DPad() == 0 ? .75 : 0.0);
     intake.setRollers(speed);
+
+    intake.setPivot(-RobotContainer.operator.getRawAxis(1));
+
   }
 
   // Called once the command ends or is interrupted.
