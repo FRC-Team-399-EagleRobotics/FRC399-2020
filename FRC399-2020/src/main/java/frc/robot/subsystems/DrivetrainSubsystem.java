@@ -12,7 +12,9 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 //import com.kauailabs.navx.frc.AHRS;
+import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.commands.TeleopDriveCommand;
@@ -20,6 +22,7 @@ import frc.robot.commands.TeleopDriveCommand;
 public class DrivetrainSubsystem extends SubsystemBase {
 
   private TalonFX leftA, leftB, rightA, rightB;  
+  private AHRS navx;
   
   //private AHRS navx;
   /**
@@ -46,8 +49,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
     // END TALON INITIALIZATION
 
     // BEGIN NAVX INIT AND CALIBRATION
-    // navx = new AHRS(SPI.Port.kMXP);
-    // navx.reset();
+    navx = new AHRS(SPI.Port.kMXP);
+    navx.reset();
 
 
     this.setDefaultCommand(new TeleopDriveCommand(this));
@@ -74,7 +77,18 @@ public class DrivetrainSubsystem extends SubsystemBase {
     setTank(throttle + steering, throttle - steering);
   }
   public void setAutoAim(boolean enable){
-    
+
+  }
+
+  public void turnToAngle(double targetAngle,double p){
+    double error = navx.getAngle() - targetAngle;
+    double output = error*p;
+
+    leftA.set(ControlMode.PercentOutput, output);
+    leftB.set(ControlMode.Follower, Constants.Drivetrain.LEFT_A_ID);
+
+    rightA.set(ControlMode.PercentOutput, output);
+    rightB.set(ControlMode.Follower, Constants.Drivetrain.RIGHT_A_ID);
   }
 
   /**
