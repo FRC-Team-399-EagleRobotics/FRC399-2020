@@ -16,6 +16,9 @@ import frc.robot.commands.TeleopIndexPassiveCommand;
 
 public class IndexerSubsystem extends SubsystemBase {
 
+
+
+  
 private TalonSRX indexer, feeder;
 
   /**
@@ -30,7 +33,7 @@ private TalonSRX indexer, feeder;
   }
 
   /**
-   * Sets the output speed of the rotational motor of the spindexer
+   * Sets the output speed of the rotational motor of the spindexer 
    * @param output
    */
   public void setSpin(double output) {
