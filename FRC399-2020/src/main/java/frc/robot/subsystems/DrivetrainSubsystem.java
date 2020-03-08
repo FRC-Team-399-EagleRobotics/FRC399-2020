@@ -53,7 +53,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
     navx.reset();
 
 
-    this.setDefaultCommand(new TeleopDriveCommand(this));
   }
 
   /**

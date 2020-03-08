@@ -15,6 +15,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.commands.TeleopOpenLoopPivotCommand;
 
 
 public class ShooterTiltSubsystem extends SubsystemBase {
@@ -35,7 +36,7 @@ public class ShooterTiltSubsystem extends SubsystemBase {
     // Do talon specific setups here...
 
     tilt.set(ControlMode.PercentOutput, 0.0);
-
+    this.setDefaultCommand(new TeleopOpenLoopPivotCommand(this));
     // END TALON INITIALIZATION
 
     // BEGIN NAVX INIT AND CALIBRATION
@@ -43,7 +44,7 @@ public class ShooterTiltSubsystem extends SubsystemBase {
     // navx.reset();
 
 
-    //this.setDefaultCommand(new TeleopShooterCommand(this));
+    
   }
 
   /**

@@ -7,10 +7,12 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.TeleopDriveCommand;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
 /**
@@ -31,6 +33,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    
+    CameraServer.getInstance().startAutomaticCapture(0);
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
@@ -68,18 +72,19 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
+    m_autonomousCommand = m_robotContainer.getAutonomousCommand();    
+    //CommandScheduler.getInstance().cancelAll();
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
-
-      // if(timer.get() < 0.5){
-      //   driveTrain.setArcade(1, 0);
-      // }else{
-      //   driveTrain.setArcade(0, 0);
-      // }
     }
+
+
+    // if(timer.get() < 2){
+    //   driveTrain.setArcade(.5, 0);
+    // }else{
+    //   driveTrain.setArcade(0, 0);
+    // }
   }
 
   /**
@@ -98,6 +103,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
+    CommandScheduler.getInstance().schedule(new TeleopDriveCommand(m_robotContainer.dt));
   }
 
   /**

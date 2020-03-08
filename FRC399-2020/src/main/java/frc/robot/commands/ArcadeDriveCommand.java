@@ -15,7 +15,7 @@ import frc.robot.subsystems.DrivetrainSubsystem;
  */
 public class ArcadeDriveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final DrivetrainSubsystem dt;
+  private DrivetrainSubsystem dt;
 
 
   double throttle = 0.0;
@@ -57,12 +57,11 @@ public class ArcadeDriveCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     
-    dt.setArcade(0,0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

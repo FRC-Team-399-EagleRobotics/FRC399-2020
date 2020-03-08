@@ -11,13 +11,15 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.commands.ArcadeDriveCommand;
+import frc.robot.commands.DriveForwardAutoGroup;
+import frc.robot.commands.TeleopDriveCommand;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.ColorWheelSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.ShooterTiltSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -31,12 +33,14 @@ public class RobotContainer {
   public static Joystick rightJoy = new Joystick(1);
   public static Joystick operator = new Joystick(2);
 
-   public DrivetrainSubsystem dt = new DrivetrainSubsystem();
-   public IntakeSubsystem intake = new IntakeSubsystem();
-   public IndexerSubsystem indexer = new IndexerSubsystem();
-   public ShooterSubsystem shooter = new ShooterSubsystem();
-   public ColorWheelSubsystem colorWheel = new ColorWheelSubsystem();
-   public ClimberSubsystem climber = new ClimberSubsystem();
+   public static DrivetrainSubsystem dt = new DrivetrainSubsystem();
+   public static IntakeSubsystem intake = new IntakeSubsystem();
+   public static IndexerSubsystem indexer = new IndexerSubsystem();
+   public static ShooterSubsystem shooter = new ShooterSubsystem();
+   public static ColorWheelSubsystem colorWheel = new ColorWheelSubsystem();
+   public static ClimberSubsystem climber = new ClimberSubsystem();
+   //
+   public static ShooterTiltSubsystem tilt = new ShooterTiltSubsystem();
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -44,6 +48,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+
   }
 
   /**
@@ -53,6 +58,8 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    
+    dt.setDefaultCommand(new TeleopDriveCommand(dt));
   }
 
 
@@ -62,7 +69,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return (new ArcadeDriveCommand(this.dt, .375, 0)).withTimeout(.5);
+    // An ExampleCommand will run
+    return new DriveForwardAutoGroup(dt);
   }
 }

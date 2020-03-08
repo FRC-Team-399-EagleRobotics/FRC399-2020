@@ -16,7 +16,7 @@ import frc.robot.subsystems.DrivetrainSubsystem;
  */
 public class TeleopDriveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final DrivetrainSubsystem dt;
+  private DrivetrainSubsystem dt;
 
   /**
    * Creates a new ExampleCommand.
