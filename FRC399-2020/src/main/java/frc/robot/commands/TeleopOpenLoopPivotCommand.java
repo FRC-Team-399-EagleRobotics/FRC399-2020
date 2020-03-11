@@ -42,10 +42,8 @@ public class TeleopOpenLoopPivotCommand extends CommandBase {
   @Override
   public void execute() {
 
-  
-
      double speed = (Controls.DPad() == 270 ? -.75 : Controls.DPad() == 90 ? .75 : 0.0);
-    shooter.set(speed);
+     shooter.set(speed);
     // double speed = 0.0;
 
     // if(RobotContainer.operator.getRawButton(1)) {

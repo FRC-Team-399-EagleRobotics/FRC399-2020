@@ -19,7 +19,7 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.subsystems.ShooterTiltSubsystem;
+//import frc.robot.subsystems.ShooterTiltSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -39,8 +39,7 @@ public class RobotContainer {
    public static ShooterSubsystem shooter = new ShooterSubsystem();
    public static ColorWheelSubsystem colorWheel = new ColorWheelSubsystem();
    public static ClimberSubsystem climber = new ClimberSubsystem();
-   //
-   public static ShooterTiltSubsystem tilt = new ShooterTiltSubsystem();
+   //public static ShooterTiltSubsystem tilt = new ShooterTiltSubsystem();
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
