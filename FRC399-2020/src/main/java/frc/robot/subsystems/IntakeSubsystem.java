@@ -27,7 +27,7 @@ public class IntakeSubsystem extends SubsystemBase {
   public IntakeSubsystem() {
     
     intake = new TalonSRX(Constants.Intake.INTAKE_ID);
-    pivot = new TalonSRX(Constants.Intake.PIVOT_ID);
+    pivot = init(Constants.Intake.PIVOT_ID);
 
     this.setDefaultCommand(new TeleopIntakeCommand(this));
 
@@ -73,7 +73,7 @@ public class IntakeSubsystem extends SubsystemBase {
     talon.setNeutralMode(NeutralMode.Brake);
     // Do common talon initialization stuff here.
 
-    double kP = 3.5;
+    double kP = .5;
     double kI = 0.0;
     double kD = 0.0;
     double kF = 0.0;
@@ -85,7 +85,6 @@ public class IntakeSubsystem extends SubsystemBase {
     talon.config_kF(0, kF);  
     talon.config_IntegralZone(0, iZone);
 
-    talon.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
     
     talon.configOpenloopRamp(0.01, 0);
     talon.configPeakCurrentLimit(25, 0);
@@ -99,7 +98,7 @@ public class IntakeSubsystem extends SubsystemBase {
     talon.selectProfileSlot(0, 0);
     talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
     
-    //talon.setSelectedSensorPosition(0, 0, 0);
+    talon.setSelectedSensorPosition(0, 0, 0);
 
     talon.configClosedloopRamp(.15, 0);
     talon.setSensorPhase(true);

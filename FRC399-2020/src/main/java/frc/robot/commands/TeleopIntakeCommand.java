@@ -35,7 +35,7 @@ public class TeleopIntakeCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    intake.init(Constants.Intake.PIVOT_ID);
+  //  intake.init(Constants.Intake.PIVOT_ID);
   }
 
   // If the Operator Presses down on the DPAD the intake will pivot to its down position
@@ -43,7 +43,8 @@ public class TeleopIntakeCommand extends CommandBase {
   // the indexer
   @Override
   public void execute() {
-   // intake.init(Constants.Intake.PIVOT_ID);
+    
+    //intake.init(Constants.Intake.PIVOT_ID);
 
     double speed = (Controls.DPad() == 180 ? -.75 : Controls.DPad() == 0 ? .75 : 0.0);
     intake.setRollers(speed);
