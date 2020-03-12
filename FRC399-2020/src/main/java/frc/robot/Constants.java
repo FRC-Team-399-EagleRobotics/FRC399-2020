@@ -27,8 +27,8 @@ public final class Constants {
     public static class Intake {
         public static final int INTAKE_ID = 24;
         public static final int PIVOT_ID = 5;
-        public static final double INTAKE_PIVOT_DOWN_POSITION = 0.0;
-        public static final double INTAKE_PIVOT_UP_POSITION = 0.0;
+        public static final double INTAKE_PIVOT_DOWN_POSITION = 25.0;
+        public static final double INTAKE_PIVOT_UP_POSITION = 1000.0;
     }
 
     public static class Indexer {

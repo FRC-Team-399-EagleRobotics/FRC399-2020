@@ -55,6 +55,7 @@ public class IntakeSubsystem extends SubsystemBase {
     pivot.set(ControlMode.Position, angle);
   }
 
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
@@ -72,7 +73,7 @@ public class IntakeSubsystem extends SubsystemBase {
     talon.setNeutralMode(NeutralMode.Brake);
     // Do common talon initialization stuff here.
 
-    double kP = 0.025;
+    double kP = 3.5;
     double kI = 0.0;
     double kD = 0.0;
     double kF = 0.0;
@@ -96,19 +97,23 @@ public class IntakeSubsystem extends SubsystemBase {
     talon.configPeakOutputReverse(-1, 0);
 
     talon.selectProfileSlot(0, 0);
-    talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
-    talon.setSelectedSensorPosition(0, 0, 0);
+    talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+    
+    //talon.setSelectedSensorPosition(0, 0, 0);
 
     talon.configClosedloopRamp(.15, 0);
-    talon.setSensorPhase(false);
+    talon.setSensorPhase(true);
     talon.setInverted(false);
 
     talon.config_kP(0, .55, 0);
     talon.config_kI(0, 0, 0);
     talon.config_kD(0, 0, 0);
     talon.config_kF(0, 0, 0);
-    System.out.println(talon.getSelectedSensorPosition());
+    
+    System.out.println("INTAKE PIVOT:" + talon.getSelectedSensorPosition());
+
     return talon;
 
   }
+  
 }
