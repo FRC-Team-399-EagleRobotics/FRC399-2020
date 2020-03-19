@@ -11,13 +11,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.ShooterTiltSubsystem;
-import frc.robot.util.GamepadUtility;
+
 
 /**
  * An example command that uses an example subsystem.
  */
 public class TeleopOpenLoopPivotCommand extends CommandBase {
-    GamepadUtility Controls = GamepadUtility.getInstance();
+    
     
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ShooterTiltSubsystem shooter;
@@ -42,7 +42,7 @@ public class TeleopOpenLoopPivotCommand extends CommandBase {
   @Override
   public void execute() {
 
-     double speed = (Controls.DPad() == 270 ? -.75 : Controls.DPad() == 90 ? .75 : 0.0);
+     double speed = (RobotContainer.operator.getPOV() == 270 ? -.75 : RobotContainer.operator.getPOV() == 90 ? .75 : 0.0);
      shooter.set(speed);
     // double speed = 0.0;
 

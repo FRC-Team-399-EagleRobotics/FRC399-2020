@@ -19,7 +19,7 @@ import frc.robot.util.*;
 public class TeleopIntakeCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final IntakeSubsystem intake;
-  GamepadUtility Controls = GamepadUtility.getInstance();
+  
 
   /**
    * Creates a new ExampleCommand.
@@ -46,11 +46,11 @@ public class TeleopIntakeCommand extends CommandBase {
     
     //intake.init(Constants.Intake.PIVOT_ID);
 
-    double speed = (Controls.DPad() == 180 ? -.75 : Controls.DPad() == 0 ? .75 : 0.0);
+    double speed = (RobotContainer.operator.getPOV() == 180 ? -.75 : RobotContainer.operator.getPOV() == 0 ? .75 : 0.0);
     intake.setRollers(speed);
     intake.setPivot(-RobotContainer.operator.getRawAxis(1));
     
-    double angle = (Controls.DPad() == 180 ? Constants.Intake.INTAKE_PIVOT_DOWN_POSITION : Constants.Intake.INTAKE_PIVOT_UP_POSITION);
+    double angle = (RobotContainer.operator.getPOV() == 180 ? Constants.Intake.INTAKE_PIVOT_DOWN_POSITION : Constants.Intake.INTAKE_PIVOT_UP_POSITION);
     intake.setPivotPreset(angle);
   }
 

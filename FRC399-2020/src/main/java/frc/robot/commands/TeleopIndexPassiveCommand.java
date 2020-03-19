@@ -18,7 +18,7 @@ import frc.robot.util.*;
 public class TeleopIndexPassiveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final IndexerSubsystem indexer;
-  GamepadUtility Controls = GamepadUtility.getInstance();
+
 
   /**
    * Creates a new ExampleCommand.
@@ -41,7 +41,7 @@ public class TeleopIndexPassiveCommand extends CommandBase {
   public void execute() {
 
    
-   double indexerOutput = (Controls.DPad() == 180 ? -.375 : RobotContainer.operator.getRawButton(8) ? .3750 :
+   double indexerOutput = (RobotContainer.operator.getPOV() == 180 ? -.375 : RobotContainer.operator.getRawButton(8) ? .3750 :
    RobotContainer.operator.getRawButton(6) ? -0.375 : 0.0);
    double feederOutput = (RobotContainer.operator.getRawButton(8) ? 1.0 : RobotContainer.operator.getRawButton(6) ? -0.75 : 0.0);
 
