@@ -8,8 +8,10 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.util.*;
 
 /**
  * An example command that uses an example subsystem.
@@ -17,6 +19,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class TeleopIntakeCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final IntakeSubsystem intake;
+  GamepadUtility Controls = GamepadUtility.getInstance();
 
   /**
    * Creates a new ExampleCommand.
@@ -32,15 +35,23 @@ public class TeleopIntakeCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+  //  intake.init(Constants.Intake.PIVOT_ID);
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+  // If the Operator Presses down on the DPAD the intake will pivot to its down position
+  //Otherwise the intake will assume an up position such that the intake will clear
+  // the indexer
   @Override
   public void execute() {
+    
+    //intake.init(Constants.Intake.PIVOT_ID);
 
-    double speed = RobotContainer.operator.getRawAxis(1);
-
+    double speed = (Controls.DPad() == 180 ? -.75 : Controls.DPad() == 0 ? .75 : 0.0);
     intake.setRollers(speed);
+    intake.setPivot(-RobotContainer.operator.getRawAxis(1));
+    
+    double angle = (Controls.DPad() == 180 ? Constants.Intake.INTAKE_PIVOT_DOWN_POSITION : Constants.Intake.INTAKE_PIVOT_UP_POSITION);
+    intake.setPivotPreset(angle);
   }
 
   // Called once the command ends or is interrupted.

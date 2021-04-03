@@ -8,24 +8,26 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.DriverInterface;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.util.*;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class TeleopShooterCommand extends CommandBase {
+public class TeleopIntakeCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final ShooterSubsystem shooter;
+  private final IntakeSubsystem intake;
+  GamepadUtility Controls = GamepadUtility.getInstance();
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public TeleopShooterCommand(ShooterSubsystem subsystem) {
-    shooter = subsystem;
+  public TeleopIntakeCommand(IntakeSubsystem subsystem) {
+    intake = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -33,40 +35,19 @@ public class TeleopShooterCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+  //  intake.init(Constants.Intake.PIVOT_ID);
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+  // If the Operator Presses down on the DPAD the intake will pivot to its down position
+  //Otherwise the intake will assume an up position such that the intake will clear
+  // the indexer
   @Override
   public void execute() {
+    
+    //intake.init(Constants.Intake.PIVOT_ID);
 
-    // open loop
-    double speed = 0.0;
-
-    if(RobotContainer.operator.getRawButton(1)) {
-      speed = 0.25;
-    } else if(RobotContainer.operator.getRawButton(2)) {
-      speed = 0.5;
-    } else if(RobotContainer.operator.getRawButton(3)) {
-      speed = 0.8;
-    } else if(RobotContainer.operator.getRawButton(4)) {
-      speed = 1;
-    }
-
-     shooter.set(speed, speed * 0.8);
-
-    // double speed = 0.0;
-
-    // if(RobotContainer.operator.getRawButton(1)) {
-    //   speed = 1000;
-    // } else if(RobotContainer.operator.getRawButton(2)) {
-    //   speed = 2000;
-    // } else if(RobotContainer.operator.getRawButton(3)) {
-    //   speed = 4000;
-    // } else if(RobotContainer.operator.getRawButton(4)) {
-    //   speed = 6000;
-    // }
-
-    // shooter.setVelocity(speed);
+    double speed = (Controls.DPad() == 180 ? -.75 : Controls.DPad() == 0 ? .75 : 0.0);
+    intake.setRollers(speed);
   }
 
   // Called once the command ends or is interrupted.

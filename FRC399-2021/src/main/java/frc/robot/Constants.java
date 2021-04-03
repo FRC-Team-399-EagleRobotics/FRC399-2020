@@ -39,8 +39,9 @@ public final class Constants {
     public static class Shooter {
         public static final int TOP_ID = 30;
         public static final int BOT_ID = 31;
-
         public static final int SHOOTER_PIVOT_ID = 32;
+
+        
     }
     public static class Climber {
         public static final int WINCH_A_ID = 1;

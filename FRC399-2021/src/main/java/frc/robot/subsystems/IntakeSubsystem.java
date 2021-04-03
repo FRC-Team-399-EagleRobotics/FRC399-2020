@@ -19,7 +19,7 @@ import frc.robot.commands.TeleopIntakeCommand;
 
 public class IntakeSubsystem extends SubsystemBase {
 
-  private TalonSRX intake, pivot;
+  private TalonSRX intake;
 
   /**
    * Creates a new IntakeSubsystem.
@@ -27,7 +27,6 @@ public class IntakeSubsystem extends SubsystemBase {
   public IntakeSubsystem() {
     
     intake = new TalonSRX(Constants.Intake.INTAKE_ID);
-    pivot = init(Constants.Intake.PIVOT_ID);
 
     this.setDefaultCommand(new TeleopIntakeCommand(this));
 
@@ -41,19 +40,6 @@ public class IntakeSubsystem extends SubsystemBase {
     intake.set(ControlMode.PercentOutput, speed);
   }
   
-
-  /**
-   * Sets the setpoint for the PID controller on the intake angle
-   * @param angle
-   */
-  public void setPivot(double angle) {
-    pivot.set(ControlMode.PercentOutput, angle);
-  }
-
-  public void setPivotPreset(double angle){
-
-    pivot.set(ControlMode.Position, angle);
-  }
 
 
   @Override

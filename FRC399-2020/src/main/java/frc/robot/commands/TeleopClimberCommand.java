@@ -8,24 +8,23 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.DriverInterface;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class TeleopShooterCommand extends CommandBase {
+public class TeleopClimberCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final ShooterSubsystem shooter;
+  private final ClimberSubsystem climber;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public TeleopShooterCommand(ShooterSubsystem subsystem) {
-    shooter = subsystem;
+  public TeleopClimberCommand(ClimberSubsystem subsystem) {
+    climber = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -39,34 +38,8 @@ public class TeleopShooterCommand extends CommandBase {
   @Override
   public void execute() {
 
-    // open loop
-    double speed = 0.0;
-
-    if(RobotContainer.operator.getRawButton(1)) {
-      speed = 0.25;
-    } else if(RobotContainer.operator.getRawButton(2)) {
-      speed = 0.5;
-    } else if(RobotContainer.operator.getRawButton(3)) {
-      speed = 0.8;
-    } else if(RobotContainer.operator.getRawButton(4)) {
-      speed = 1;
-    }
-
-     shooter.set(speed, speed * 0.8);
-
-    // double speed = 0.0;
-
-    // if(RobotContainer.operator.getRawButton(1)) {
-    //   speed = 1000;
-    // } else if(RobotContainer.operator.getRawButton(2)) {
-    //   speed = 2000;
-    // } else if(RobotContainer.operator.getRawButton(3)) {
-    //   speed = 4000;
-    // } else if(RobotContainer.operator.getRawButton(4)) {
-    //   speed = 6000;
-    // }
-
-    // shooter.setVelocity(speed);
+    climber.setWinch(RobotContainer.operator.getRawAxis(3));
+   
   }
 
   // Called once the command ends or is interrupted.

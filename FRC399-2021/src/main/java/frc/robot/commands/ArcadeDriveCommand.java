@@ -8,24 +8,28 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.DriverInterface;
-import frc.robot.RobotContainer;
-import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.DrivetrainSubsystem;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class TeleopShooterCommand extends CommandBase {
+public class ArcadeDriveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final ShooterSubsystem shooter;
+  private DrivetrainSubsystem dt;
+
+
+  double throttle = 0.0;
+  double steering = 0.0;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public TeleopShooterCommand(ShooterSubsystem subsystem) {
-    shooter = subsystem;
+  public ArcadeDriveCommand(DrivetrainSubsystem subsystem, double throttle, double steering) {
+    dt = subsystem;
+    this.throttle = throttle;
+    this.steering = steering;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -39,44 +43,25 @@ public class TeleopShooterCommand extends CommandBase {
   @Override
   public void execute() {
 
-    // open loop
-    double speed = 0.0;
+    // double l = RobotContainer.leftJoy.getRawAxis(1);
+    
+    // double r = RobotContainer.rightJoy.getRawAxis(1);
+    // dt.setTank(l, r);
 
-    if(RobotContainer.operator.getRawButton(1)) {
-      speed = 0.25;
-    } else if(RobotContainer.operator.getRawButton(2)) {
-      speed = 0.5;
-    } else if(RobotContainer.operator.getRawButton(3)) {
-      speed = 0.8;
-    } else if(RobotContainer.operator.getRawButton(4)) {
-      speed = 1;
-    }
+    //steering = steering * Math.abs(steering);
 
-     shooter.set(speed, speed * 0.8);
-
-    // double speed = 0.0;
-
-    // if(RobotContainer.operator.getRawButton(1)) {
-    //   speed = 1000;
-    // } else if(RobotContainer.operator.getRawButton(2)) {
-    //   speed = 2000;
-    // } else if(RobotContainer.operator.getRawButton(3)) {
-    //   speed = 4000;
-    // } else if(RobotContainer.operator.getRawButton(4)) {
-    //   speed = 6000;
-    // }
-
-    // shooter.setVelocity(speed);
+    dt.setArcade(throttle, steering);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

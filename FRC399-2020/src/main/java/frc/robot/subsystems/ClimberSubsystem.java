@@ -12,42 +12,32 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.commands.TeleopIndexPassiveCommand;
+import frc.robot.commands.*;
 
-public class IndexerSubsystem extends SubsystemBase {
+public class ClimberSubsystem extends SubsystemBase {
 
-
-
-  
-private TalonSRX indexer, feeder;
+private TalonSRX Winch_a, Winch_b;
 
   /**
    * Creates a new ExampleSubsystem.
    */
-  public IndexerSubsystem() {
-    indexer = new TalonSRX(Constants.Indexer.INDEXER_ID);
-    feeder = new TalonSRX(Constants.Indexer.FEEDER_ID);
-    this.setDefaultCommand(new TeleopIndexPassiveCommand(this));
-   // this.setDefaultCommand(new TeleopIndexerCommand(this));
+  public ClimberSubsystem() {
+    Winch_a = new TalonSRX(Constants.Climber.WINCH_A_ID);
+    Winch_b = new TalonSRX(Constants.Climber.WINCH_B_ID);
 
+    this.setDefaultCommand(new TeleopClimberCommand(this));
+    Winch_a.set(ControlMode.PercentOutput, 0.0);
+    Winch_b.set(ControlMode.Follower, Constants.Climber.WINCH_A_ID);
   }
 
   /**
-   * Sets the output speed of the rotational motor of the spindexer 
+   * Sets the output speed of the rotational motor of the spindexer
    * @param output
    */
-  public void setSpin(double output) {
-    indexer.set(ControlMode.PercentOutput, output);
+  public void setWinch(double output) {
+    Winch_a.set(ControlMode.PercentOutput, output);
   }
   
-  /**
-   * Sets the output speed of the feeder wheel and belts
-   * @param output
-   */
-  public void setFeed(double output) {
-    feeder.set(ControlMode.PercentOutput, output);
-  }
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

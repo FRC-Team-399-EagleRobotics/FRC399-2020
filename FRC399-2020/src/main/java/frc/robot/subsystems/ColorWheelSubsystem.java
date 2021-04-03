@@ -12,42 +12,29 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.commands.TeleopIndexPassiveCommand;
+import frc.robot.commands.*;
 
-public class IndexerSubsystem extends SubsystemBase {
+public class ColorWheelSubsystem extends SubsystemBase {
 
-
-
-  
-private TalonSRX indexer, feeder;
+private TalonSRX ColorWheel;
 
   /**
    * Creates a new ExampleSubsystem.
    */
-  public IndexerSubsystem() {
-    indexer = new TalonSRX(Constants.Indexer.INDEXER_ID);
-    feeder = new TalonSRX(Constants.Indexer.FEEDER_ID);
-    this.setDefaultCommand(new TeleopIndexPassiveCommand(this));
-   // this.setDefaultCommand(new TeleopIndexerCommand(this));
-
+  public  ColorWheelSubsystem() {
+    ColorWheel = new TalonSRX(Constants.ColorWheel.WHEEL_ID);
+    this.setDefaultCommand(new TeleopColorWheelCommand(this));
+   
   }
 
   /**
-   * Sets the output speed of the rotational motor of the spindexer 
+   * Sets the output speed of the rotational motor of the spindexer
    * @param output
    */
-  public void setSpin(double output) {
-    indexer.set(ControlMode.PercentOutput, output);
+  public void setWheel(double output) {
+    ColorWheel.set(ControlMode.PercentOutput, output);
   }
   
-  /**
-   * Sets the output speed of the feeder wheel and belts
-   * @param output
-   */
-  public void setFeed(double output) {
-    feeder.set(ControlMode.PercentOutput, output);
-  }
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

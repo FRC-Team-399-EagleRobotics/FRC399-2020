@@ -11,15 +11,15 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.DriveForwardAutoGroup;
 import frc.robot.commands.TeleopDriveCommand;
-import frc.robot.subsystems.ClimberSubsystem;
-import frc.robot.subsystems.ColorWheelSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 //import frc.robot.subsystems.ShooterTiltSubsystem;
+import frc.robot.util.GamepadUtility;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -37,9 +37,9 @@ public class RobotContainer {
    public static IntakeSubsystem intake = new IntakeSubsystem();
    public static IndexerSubsystem indexer = new IndexerSubsystem();
    public static ShooterSubsystem shooter = new ShooterSubsystem();
-   public static ColorWheelSubsystem colorWheel = new ColorWheelSubsystem();
-   public static ClimberSubsystem climber = new ClimberSubsystem();
    //public static ShooterTiltSubsystem tilt = new ShooterTiltSubsystem();
+
+   public static GamepadUtility controls = GamepadUtility.getInstance();
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -50,6 +50,11 @@ public class RobotContainer {
 
   }
 
+  Button autoAimButton;
+  Button autoTiltButton;
+  Button shooterIdleButton;
+  
+
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
@@ -59,6 +64,30 @@ public class RobotContainer {
   private void configureButtonBindings() {
     
     dt.setDefaultCommand(new TeleopDriveCommand(dt));
+    
+    shooterIdleButton = new Button() {
+      @Override
+      public boolean get() {
+        return controls.getShooterTiltIdleButton();
+      }
+    };
+
+    autoTiltButton = new Button() {
+      @Override
+      public boolean get() {
+        return controls.getAutoTiltButton();
+      }
+    };
+
+    autoAimButton = new Button() {
+      @Override
+      public boolean get() {
+        return controls.getAutoAimButton();
+      }
+    };
+
+
+    
   }
 
 
