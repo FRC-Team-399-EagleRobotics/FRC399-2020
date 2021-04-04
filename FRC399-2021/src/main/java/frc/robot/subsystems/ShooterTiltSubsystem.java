@@ -15,7 +15,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.commands.TeleopOpenLoopPivotCommand;
 import frc.robot.commands.TeleopShooterTiltCommand;
 
 
@@ -97,28 +96,6 @@ public double getPosition() {
     talon.configClosedloopRamp(.15, 0);
     talon.setSensorPhase(true);
     talon.setInverted(false);
-
-
-    
-    talon.configOpenloopRamp(0.01, 0);
-    talon.configPeakCurrentLimit(25, 0);
-    talon.configContinuousCurrentLimit(12, 0);
-    talon.configPeakCurrentDuration(500, 0);
-    talon.enableCurrentLimit(true);
-
-    talon.configPeakOutputForward(1, 0);
-    talon.configPeakOutputReverse(-1, 0);
-
-    talon.selectProfileSlot(0, 0);
-    talon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
-    talon.setSelectedSensorPosition(0, 0, 0);
-
-    talon.configClosedloopRamp(.15, 0);
-    talon.setSensorPhase(false);
-    talon.setInverted(false);
-
-    talon.configMotionAcceleration(6500, 0);
-    talon.configMotionCruiseVelocity(5500, 0);
 
     return talon;
 
