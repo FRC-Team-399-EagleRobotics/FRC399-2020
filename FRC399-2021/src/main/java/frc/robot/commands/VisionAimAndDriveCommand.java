@@ -45,6 +45,7 @@ public class VisionAimAndDriveCommand extends CommandBase {
   public void initialize() {
 
   }
+  double prevError = 0;
 
   // Called repeatedly when this Command is scheduled to run
   @Override
@@ -62,10 +63,13 @@ public class VisionAimAndDriveCommand extends CommandBase {
     double heading_error = -x;
     double steering_adjust = 0.0f;
 
+    double kD = .01;
+    double dError = prevError - heading_error;
+
     double minSteer = 0.075;
 
     if(Math.abs(x) > 1) { // was .25
-      steering_adjust = (DskAim*heading_error) + (Math.signum(x) * minSteer);
+      steering_adjust = (DskAim*heading_error) + (Math.signum(x) * minSteer) - (kD - dError);
     } else {
       steering_adjust = 0;
     }
@@ -75,8 +79,9 @@ public class VisionAimAndDriveCommand extends CommandBase {
     throttle = Controls.getThrottle() *.5;
     steering_adjust -= 0.15 * Controls.getTurning();
 
-    steering_adjust = Math.max(-.25, Math.min(.25, steering_adjust));
+    //steering_adjust = Math.max(-.25, Math.min(.25, steering_adjust));
     dt.setTank(throttle + steering_adjust, throttle - steering_adjust);
+    prevError = heading_error;
   }
   
 
