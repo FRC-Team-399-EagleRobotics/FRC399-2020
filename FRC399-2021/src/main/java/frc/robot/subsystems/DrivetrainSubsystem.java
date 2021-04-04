@@ -128,7 +128,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
     talon.setNeutralMode(NeutralMode.Coast);
     // Do common talon initialization stuff here.
-
+    talon.configOpenloopRamp(.375);
 
     return talon;
 

@@ -28,7 +28,7 @@ public class GamepadUtility{
    * @return
    */
   public double getTurning() {
-    return -DriverLeft.getRawAxis(0);
+    return DriverLeft.getRawAxis(0);
   }
 
 	public int leftJoystickDpad(){

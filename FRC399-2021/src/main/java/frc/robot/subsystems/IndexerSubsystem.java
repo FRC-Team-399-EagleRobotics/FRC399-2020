@@ -19,14 +19,17 @@ public class IndexerSubsystem extends SubsystemBase {
 
 
   
-private TalonSRX indexer, feeder;
+private TalonSRX indexer, feeder, feeder2;
 
   /**
    * Creates a new ExampleSubsystem.
    */
   public IndexerSubsystem() {
     indexer = new TalonSRX(Constants.Indexer.INDEXER_ID);
+
+    indexer.configOpenloopRamp(.25);
     feeder = new TalonSRX(Constants.Indexer.FEEDER_ID);
+    feeder2 = new TalonSRX(Constants.Climber.WINCH_A_ID);
     this.setDefaultCommand(new TeleopIndexPassiveCommand(this));
    // this.setDefaultCommand(new TeleopIndexerCommand(this));
 
@@ -46,6 +49,7 @@ private TalonSRX indexer, feeder;
    */
   public void setFeed(double output) {
     feeder.set(ControlMode.PercentOutput, output);
+    feeder2.set(ControlMode.PercentOutput, output);
   }
 
   @Override

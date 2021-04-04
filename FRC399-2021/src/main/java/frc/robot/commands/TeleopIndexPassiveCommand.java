@@ -41,8 +41,8 @@ public class TeleopIndexPassiveCommand extends CommandBase {
   public void execute() {
 
    
-   double indexerOutput = (Controls.DPad() == 180 ? -.375 : RobotContainer.operator.getRawButton(8) ? .3750 :
-   RobotContainer.operator.getRawButton(6) ? -0.375 : 0.0);
+   double indexerOutput = (Controls.DPad() == 180 ? .25 : RobotContainer.operator.getRawButton(8) ? 10 :
+   RobotContainer.operator.getRawButton(6) ? -1 : 0.0);
    double feederOutput = (RobotContainer.operator.getRawButton(8) ? 1.0 : RobotContainer.operator.getRawButton(6) ? -0.75 : 0.0);
 
    indexer.setSpin(indexerOutput);

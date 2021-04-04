@@ -14,11 +14,12 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.DriveForwardAutoGroup;
 import frc.robot.commands.TeleopDriveCommand;
+import frc.robot.commands.TeleopShooterTiltCommand;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-//import frc.robot.subsystems.ShooterTiltSubsystem;
+import frc.robot.subsystems.ShooterTiltSubsystem;
 import frc.robot.util.GamepadUtility;
 
 /**
@@ -37,7 +38,7 @@ public class RobotContainer {
    public static IntakeSubsystem intake = new IntakeSubsystem();
    public static IndexerSubsystem indexer = new IndexerSubsystem();
    public static ShooterSubsystem shooter = new ShooterSubsystem();
-   //public static ShooterTiltSubsystem tilt = new ShooterTiltSubsystem();
+   public static ShooterTiltSubsystem tilt = new ShooterTiltSubsystem();
 
    public static GamepadUtility controls = GamepadUtility.getInstance();
 
@@ -64,6 +65,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     
     dt.setDefaultCommand(new TeleopDriveCommand(dt));
+    tilt.setDefaultCommand(new TeleopShooterTiltCommand(tilt));
     
     shooterIdleButton = new Button() {
       @Override

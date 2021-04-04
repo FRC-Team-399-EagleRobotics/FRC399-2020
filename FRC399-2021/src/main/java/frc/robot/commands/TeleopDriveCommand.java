@@ -46,6 +46,7 @@ public class TeleopDriveCommand extends CommandBase {
     double throttle = Controls.getThrottle();
     double steering = Controls.getTurning();
 
+    throttle = throttle * Math.abs(throttle);
     steering = steering * Math.abs(steering);
 
     dt.setArcade(throttle, steering);

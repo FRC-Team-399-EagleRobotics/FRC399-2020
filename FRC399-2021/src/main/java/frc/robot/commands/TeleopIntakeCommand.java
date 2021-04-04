@@ -46,7 +46,7 @@ public class TeleopIntakeCommand extends CommandBase {
     
     //intake.init(Constants.Intake.PIVOT_ID);
 
-    double speed = (Controls.DPad() == 180 ? -.75 : Controls.DPad() == 0 ? .75 : 0.0);
+    double speed = (Controls.DPad() == 180 ? -1 : Controls.DPad() == 0 ? .75 : 0.0);
     intake.setRollers(speed);
   }
 
