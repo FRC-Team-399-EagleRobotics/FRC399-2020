@@ -16,6 +16,7 @@ public class Limelight{
     private static Limelight instance;
 
     private Limelight() {
+        
         update();
     }
 

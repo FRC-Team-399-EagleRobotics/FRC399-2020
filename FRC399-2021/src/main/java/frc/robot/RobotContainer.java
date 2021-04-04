@@ -13,8 +13,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.DriveForwardAutoGroup;
+import frc.robot.commands.TeleopAutoTiltCommand;
 import frc.robot.commands.TeleopDriveCommand;
 import frc.robot.commands.TeleopShooterTiltCommand;
+import frc.robot.commands.VisionAimAndDriveCommand;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -88,7 +90,10 @@ public class RobotContainer {
       }
     };
 
+    autoTiltButton.whileHeld(new TeleopAutoTiltCommand(tilt));
 
+
+    autoAimButton.whileHeld(new VisionAimAndDriveCommand(dt));
     
   }
 

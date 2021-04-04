@@ -43,7 +43,7 @@ public class TeleopShooterTiltCommand extends CommandBase {
   @Override
   public void execute() {
      
-    System.out.println(shooter.getPosition());
+    System.out.println(shooter.getCurrent());
      double angle = (Controls.getShooterTiltIdleButton() ? 100 : 650);
       shooter.setPosition(angle);
   }

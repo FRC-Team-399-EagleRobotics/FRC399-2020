@@ -93,7 +93,7 @@ public class GamepadUtility{
 	}
 
 	public boolean getAutoTiltButton() {
-		return OperatorGamepad.getRawButton(1);
+		return OperatorGamepad.getRawButton(9);
 	}
 
 	public boolean getAutoAimButton() {

@@ -8,11 +8,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
-import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.ShooterTiltSubsystem;
 import frc.robot.util.GamepadUtility;
-import frc.robot.Constants;
 import frc.robot.util.Limelight;
 
 /**
@@ -55,7 +52,7 @@ public class TeleopAutoTiltCommand extends CommandBase {
     //read values periodically
       double y = limelight.getY();
   // was .015
-    double DskAim = -0.015;
+    double DskAim = 0.03;
     
     if(Math.abs(y) > 5) {
     //  DskAim = -0.05;
@@ -65,13 +62,14 @@ public class TeleopAutoTiltCommand extends CommandBase {
 
     double minSteer = 0.075;
 
-    if(Math.abs(y) > 1) { // was .25
-      steering_adjust = (DskAim*error) + (Math.signum(y) * minSteer);
-    }
+    //f(Math.abs(y) > 1) { // was .25
+      steering_adjust = (DskAim*error);
+    //}
 
-    shooter.setPosition(steering_adjust);
+    shooter.set(steering_adjust - .2);
 
-    Controls.setControllerRumble(limelight.getArea() > 5.875);
+    System.out.println(y);
+
     
   }
 

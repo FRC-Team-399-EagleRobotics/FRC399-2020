@@ -47,12 +47,16 @@ public class ShooterTiltSubsystem extends SubsystemBase {
   }
 
   public void setPosition(double pos) {
-    tilt.set(ControlMode.Position, pos);
+    tilt.set(ControlMode.Position, -pos);
   }
 
 
 public double getPosition() {
   return tilt.getSelectedSensorPosition();
+}
+
+public double getCurrent() {
+  return tilt.getSupplyCurrent();
 }
 
   public TalonSRX init(int id) {
@@ -67,7 +71,7 @@ public double getPosition() {
     talon.setNeutralMode(NeutralMode.Brake);
     // Do common talon initialization stuff here.
 
-    double kP = 0.0465;
+    double kP = 3.5;
     double kI = 0.0;
     double kD = 0.0;
     double kF = 0.0;
@@ -80,8 +84,8 @@ public double getPosition() {
     talon.config_IntegralZone(0, iZone);
 
     talon.configOpenloopRamp(0.01, 0);
-    talon.configPeakCurrentLimit(25, 0);
-    talon.configContinuousCurrentLimit(12, 0);
+    talon.configPeakCurrentLimit(30, 0);
+    talon.configContinuousCurrentLimit(20, 0);
     talon.configPeakCurrentDuration(500, 0);
     talon.enableCurrentLimit(true);
 
