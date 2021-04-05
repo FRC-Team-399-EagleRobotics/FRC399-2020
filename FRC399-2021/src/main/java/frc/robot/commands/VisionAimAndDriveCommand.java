@@ -55,7 +55,7 @@ public class VisionAimAndDriveCommand extends CommandBase {
     //read values periodically
     double x = limelight.getX();
   // was .015
-    double DskAim = 0.08; // 4/3 was -0.025;//SmartDashboard.getNumber("ll_steering", 0.0); orginally -0.012
+    double DskAim = 0.05; // 4/3 was -0.025;//SmartDashboard.getNumber("ll_steering", 0.0); orginally -0.012
     
     if(Math.abs(x) < 10) {
       //DskAim = .15;
@@ -63,17 +63,17 @@ public class VisionAimAndDriveCommand extends CommandBase {
     double heading_error = -x;
     double steering_adjust = 0.0f;
 
-    double kD = .01;
+    double kD = 600;
     double dError = prevError - heading_error;
 
     double minSteer = 0.075;
 
     if(Math.abs(x) > 1) { // was .25
-      steering_adjust = (DskAim*heading_error) + (Math.signum(x) * minSteer) - (kD - dError);
+      steering_adjust = (DskAim*heading_error) + (Math.signum(x) * minSteer) - (kD * dError);
     } else {
       steering_adjust = 0;
     }
-    Controls.setControllerRumble(Math.abs(heading_error) < 2);
+    //Controls.setControllerRumble(Math.abs(heading_error) < 2);
     
     
     throttle = Controls.getThrottle() *.5;

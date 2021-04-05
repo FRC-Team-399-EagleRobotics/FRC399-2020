@@ -50,7 +50,7 @@ public class ArcadeDriveCommand extends CommandBase {
 
     //steering = steering * Math.abs(steering);
 
-    dt.setArcade(throttle, steering);
+    dt.setArcade(throttle*.5, steering*.5);
   }
 
   // Called once the command ends or is interrupted.
